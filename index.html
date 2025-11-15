@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur de Devises</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <h1 class="app-title">💱 Convertisseur de Devises</h1>
+            <p class="app-subtitle">Convertissez en temps réel avec les taux actuels</p>
+        </header>
+
+        <main class="converter-app">
+            <div class="converter-card">
+                <div class="input-group">
+                    <label for="amount" class="input-label">Montant</label>
+                    <div class="input-wrapper">
+                        <input 
+                            type="number" 
+                            id="amount" 
+                            class="input-field"
+                            placeholder="0.00"
+                            value="100"
+                            min="0"
+                            step="0.01"
+                        >
+                    </div>
+                </div>
+
+                <div class="currency-row">
+                    <div class="currency-group">
+                        <label for="fromCurrency" class="input-label">De</label>
+                        <select id="fromCurrency" class="currency-select">
+                            <option value="EUR">🇪🇺 EUR - Euro</option>
+                            <option value="USD">🇺🇸 USD - Dollar US</option>
+                            <option value="GBP">🇬🇧 GBP - Livre Sterling</option>
+                            <option value="JPY">🇯🇵 JPY - Yen Japonais</option>
+                            <option value="CHF">🇨🇭 CHF - Franc Suisse</option>
+                            <option value="CAD">🇨🇦 CAD - Dollar Canadien</option>
+                        </select>
+                    </div>
+
+                    <button id="swapBtn" class="swap-btn" aria-label="Inverser les devises">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M16 17L20 13L16 9" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 7L4 11L8 15" stroke="currentColor" stroke-width="2"/>
+                            <line x1="20" y1="13" x2="4" y2="13" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </button>
+
+                    <div class="currency-group">
+                        <label for="toCurrency" class="input-label">Vers</label>
+                        <select id="toCurrency" class="currency-select">
+                            <option value="USD">🇺🇸 USD - Dollar US</option>
+                            <option value="EUR">🇪🇺 EUR - Euro</option>
+                            <option value="GBP">🇬🇧 GBP - Livre Sterling</option>
+                            <option value="JPY">🇯🇵 JPY - Yen Japonais</option>
+                            <option value="CHF">🇨🇭 CHF - Franc Suisse</option>
+                            <option value="CAD">🇨🇦 CAD - Dollar Canadien</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="result-card">
+                <div class="result-display">
+                    <span class="result-amount" id="resultAmount">-</span>
+                    <span class="result-currency" id="resultCurrency">USD</span>
+                </div>
+                <div class="exchange-rate" id="exchangeRate">
+                    Taux de change: -
+                </div>
+            </div>
+
+            <button id="convertBtn" class="convert-btn">
+                <span class="btn-text">Convertir</span>
+                <span class="btn-loading" style="display: none;">
+                    <div class="loading-spinner"></div>
+                    Conversion...
+                </span>
+            </button>
+
+            <div class="last-update">
+                <span id="lastUpdate">Dernière mise à jour: -</span>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
