@@ -14,7 +14,7 @@ class currencyConverter {
         this.initializeDOM();
 
         this.rates = {};
-        this.lastFetch= null;
+        this.lastFetch = null;
         this.isLoading = false;
         this.retryCount = 0;
 
@@ -22,7 +22,7 @@ class currencyConverter {
     }
 
     initializeDOM() {
-        console.log("initialisation des éléents DOM ...");
+        console.log("initialisation des éléments DOM ...");
 
         this.amountInput = document.getElementById('amount');
         this.fromSelect = document.getElementById('fromCurrency');
@@ -50,6 +50,42 @@ class currencyConverter {
                 throw new Error(`Element DOM manquant: ${name}`);
             }
         }
-       console.log("Tous les éléments du DOM sont présents");
+        console.log("Tous les éléments du DOM sont présents");
+    }
+
+    init() {
+        console.log("Initialisation de l'application de conversion de devises...");
+        console.log("ProviderAPI:", this.apiConfig.provider);
+        
+        this.bindEvents();
+        this.loadRates();
+    }
+
+    bindEvents() {
+        console.log("liaison des évènements ...");
+
+        this.convertBtn.addEventListener('click', () => { 
+            this.convert();
+        });
+
+        this.amountInput.addEventListener('input', () => { 
+            this.debouncedConvert();
+        });
+
+        this.fromSelect.addEventListener('change', () => { 
+            this.loadRates();
+        });
+
+        this.toSelect.addEventListener('change', () => { 
+            this.swapCurrencies();
+        });
+
+        this.amountInput.addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                this.convert();
+            }
+        });
+
+        console.log("événements liés avec succès");
     }
 }
